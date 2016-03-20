@@ -10,8 +10,8 @@ const operationMap = {
 };
 
 const operator = process.argv[2];
-const operand1 = parseInt(process.argv[3], 10);
-const operand2 = parseInt(process.argv[4], 10);
+const operand1 = parseFloat(process.argv[3]);
+const operand2 = parseFloat(process.argv[4]);
 
 if (!operator || !operand1 || !operand2) {
     throw new Error('Please provide a operator and two operands.');
