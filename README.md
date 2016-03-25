@@ -9,7 +9,7 @@ The code in this repository may be a bit more advanced than shown in the article
 
 * _Serverentwicklung mal anders: Die Welt von Node.js_: `part1`
 * _Gib mir den REST: Moderne Web APIs mit Node.js_: `part2`
-* _3. Datenbanken mit Node.js: Aber mit Struktur!_: `part3`
+* _Datenbanken mit Node.js: Aber mit Struktur!_: `part3`
 * _Alles grün! Unit- und Integrationstests mit Node.js_: `part4`
 
 ## Requirements
