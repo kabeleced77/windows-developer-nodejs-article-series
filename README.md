@@ -18,3 +18,13 @@ The code in this repository may be a bit more advanced than shown in the article
   * Should be installed via Node Version Manager (nvm) to allow easily switching of different Node.js versions
   * [nvm for Mac OS X and Linux](https://github.com/creationix/nvm)
   * [nvm for Windows](https://github.com/coreybutler/nvm-windows)
+
+## Usage
+
+### Part 1
+
+Part 1 implememnts a little calculator which can be accessed via the command line. To use the code from part 1, point a terminal to the `part1` folder. You can use the app via the following command: `node index.js operator operand1 operand2` whereas the command line parameters accept the following values:
+
+* `operator`: Can be `add`, `subtract`, `multiply` or `divide`. 
+* `operator1`: Can be any floating point number.
+* `operator2`: Same as `operator1`
