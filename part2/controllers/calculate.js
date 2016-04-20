@@ -20,6 +20,15 @@ function CalculateController() {
         }
     }
 
+    function parseParameters(req) {
+        ensureValidParameters(req);
+
+        return {
+            operand1: parseFloat(req.params.operand1),
+            operand2: parseFloat(req.params.operand2)
+        }
+    }
+
     function sendResult(res, result) {
         res.json(200, {
             result: result
@@ -27,23 +36,23 @@ function CalculateController() {
     }
 
     function add(req, res) {
-        ensureValidParameters(req);
-        sendResult(res, operations.add(req.params.operand1, req.params.operand2));
+        const params = parseParameters(req);
+        sendResult(res, operations.add(params.operand1, params.operand2));
     }
 
     function subtract(req, res) {
-        ensureValidParameters(req);
-        sendResult(res, operations.subtract(req.params.operand1, req.params.operand2));
+        const params = parseParameters(req);
+        sendResult(res, operations.subtract(params.operand1, params.operand2));
     }
 
     function multiply(req, res) {
-        ensureValidParameters(req);
-        sendResult(res, operations.multiply(req.params.operand1, req.params.operand2));
+        const params = parseParameters(req);
+        sendResult(res, operations.multiply(params.operand1, params.operand2));
     }
 
     function divide(req, res) {
-        ensureValidParameters(req);
-        sendResult(res, operations.divide(req.params.operand1, req.params.operand2));
+        const params = parseParameters(req);
+        sendResult(res, operations.divide(params.operand1, params.operand2));
     }
 }
 

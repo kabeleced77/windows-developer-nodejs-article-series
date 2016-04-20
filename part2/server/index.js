@@ -6,17 +6,19 @@ const executionTime = require('./executionTime'),
     controllers = require('../controllers');
 
 function Server() {
+    const that = this;
     let server;
     
     this.start = () => {
         server = restify.createServer();
 
         server.use(restify.CORS());
+        server.use(restify.queryParser());
         server.use(executionTime());
 
         initializeControllers();
 
-        server.listen(8000, () => console.log('Server is up and running.'));
+        server.listen(8000, () => console.log('Server is up and running on port 8000.'));
     };
 
     this.addRoute = (route, callback, method) => {
@@ -37,6 +39,8 @@ function Server() {
     };
 
     function initializeControllers() {
-        controllers.forEach(controller => controller.initialize(server));
+        controllers.forEach(controller => controller.initialize(that));
     }
 }
+
+module.exports = Server;
