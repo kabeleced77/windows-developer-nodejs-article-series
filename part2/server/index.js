@@ -12,9 +12,10 @@ function Server() {
     this.start = () => {
         server = restify.createServer();
 
+        server.pre(executionTime());
+        
         server.use(restify.CORS());
         server.use(restify.queryParser());
-        server.use(executionTime());
 
         initializeControllers();
 

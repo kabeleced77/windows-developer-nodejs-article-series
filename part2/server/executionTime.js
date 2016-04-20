@@ -6,8 +6,10 @@ module.exports = () => {
 
         next();
 
-        const endTime = (new Date()).getTime();
+        res.once('finish', () => {
+            const endTime = (new Date()).getTime();
 
-        console.log('Time to execute', req.address, endTime - startTime, 'msec.');
+            console.log(`Time to execute [${req.method}] ${req.url}: ${endTime - startTime} msec.`);
+        });
     };
 };
