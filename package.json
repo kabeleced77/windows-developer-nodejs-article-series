@@ -1,0 +1,20 @@
+{
+  "name": "windows-developer-nodejs-article-series",
+  "version": "1.0.0",
+  "description": "This package contains the code from the Windows Developer Node.js article series.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thinktecture/windows-developer-nodejs-article-series.git"
+  },
+  "keywords": [],
+  "author": "Manuel Rauber <manuel.rauber@thinktecture.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thinktecture/windows-developer-nodejs-article-series/issues"
+  },
+  "homepage": "https://github.com/thinktecture/windows-developer-nodejs-article-series#readme",
+  "dependencies": {
+    "restify": "^4.0.4"
+  }
+}
