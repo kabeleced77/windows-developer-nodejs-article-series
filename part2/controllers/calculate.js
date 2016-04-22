@@ -4,28 +4,28 @@ const operations = require('../services').operations;
 
 function CalculateController() {
     this.initialize = (server) => {
-        server.addRoute('operation/add/:operand1/:operand2', add);
-        server.addRoute('operation/subtract/:operand1/:operand2', subtract, 'del');
-        server.addRoute('operation/multiply/:operand1/:operand2', multiply, 'post');
-        server.addRoute('operation/divide/:operand1/:operand2', divide, 'put');
+        server.addRoute('calculate/add/:operand1/:operand2', add);
+        server.addRoute('calculate/subtract/:operand1/:operand2', subtract, 'del');
+        server.addRoute('calculate/multiply', multiply, 'post');
+        server.addRoute('calculate/divide', divide, 'put');
     };
 
-    function ensureValidParameters(req) {
-        if (!req.params.operand1) {
+    function ensureValidParameters(paramsObj) {
+        if (!paramsObj.operand1) {
             throw new Error('First operand is mandatory.');
         }
 
-        if (!req.params.operand2) {
+        if (!paramsObj.operand2) {
             throw new Error('Second operand is mandatory.');
         }
     }
 
-    function parseParameters(req) {
-        ensureValidParameters(req);
+    function parseParameters(paramsObj) {
+        ensureValidParameters(paramsObj);
 
         return {
-            operand1: parseFloat(req.params.operand1),
-            operand2: parseFloat(req.params.operand2)
+            operand1: parseFloat(paramsObj.operand1),
+            operand2: parseFloat(paramsObj.operand2)
         }
     }
 
@@ -36,22 +36,22 @@ function CalculateController() {
     }
 
     function add(req, res) {
-        const params = parseParameters(req);
+        const params = parseParameters(req.params);
         sendResult(res, operations.add(params.operand1, params.operand2));
     }
 
     function subtract(req, res) {
-        const params = parseParameters(req);
+        const params = parseParameters(req.params);
         sendResult(res, operations.subtract(params.operand1, params.operand2));
     }
 
     function multiply(req, res) {
-        const params = parseParameters(req);
+        const params = parseParameters(req.body);
         sendResult(res, operations.multiply(params.operand1, params.operand2));
     }
 
     function divide(req, res) {
-        const params = parseParameters(req);
+        const params = parseParameters(req.body);
         sendResult(res, operations.divide(params.operand1, params.operand2));
     }
 }

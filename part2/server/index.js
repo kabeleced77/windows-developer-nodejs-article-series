@@ -16,6 +16,7 @@ function Server() {
         
         server.use(restify.CORS());
         server.use(restify.queryParser());
+        server.use(restify.bodyParser());
 
         initializeControllers();
 
