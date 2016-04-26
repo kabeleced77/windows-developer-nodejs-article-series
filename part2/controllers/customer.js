@@ -8,7 +8,7 @@ function CustomerController() {
         server.addRoute('customer/:id', getById);
         server.addRoute('customer/:id', remove, 'del');
         server.addRoute('customer', post, 'post');
-        server.addRoute('customer', update, 'put');
+        server.addRoute('customer/:id', update, 'put');
     };
 
     function all(req, res) {
@@ -34,7 +34,7 @@ function CustomerController() {
     }
 
     function update(req, res) {
-        res.json(200, customers.update(req.body.id, req.body.firstName, req.body.lastName));
+        res.json(200, customers.update(req.params.id, req.body.firstName, req.body.lastName));
     }
 }
 

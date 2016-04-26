@@ -43,15 +43,15 @@ function CustomersService() {
     };
 
     this.update = (id, firstName, lastName) => {
-        if (!this.get(id)) {
+        const existingCustomer = this.get(id);
+        if (!existingCustomer) {
             throw new Error(`Customer with id ${id} not found.`);
         }
 
-        const item = inMemoryStorage[id];
-        item.firstName = firstName;
-        item.lastName = lastName;
+        existingCustomer.firstName = firstName;
+        existingCustomer.lastName = lastName;
 
-        return item;
+        return existingCustomer;
     };
 }
 
