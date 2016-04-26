@@ -1,6 +1,6 @@
 'use strict';
 
-function CustomersService() {
+function CustomerService() {
     let indexCounter = 1;
     const inMemoryStorage = {};
 
@@ -39,7 +39,7 @@ function CustomersService() {
     };
 
     this.remove = id => {
-        delete inMemoryStorage[id];
+        delete inMemoryStorage[parseId(id)];
     };
 
     this.update = (id, firstName, lastName) => {
@@ -48,11 +48,11 @@ function CustomersService() {
             throw new Error(`Customer with id ${id} not found.`);
         }
 
-        existingCustomer.firstName = firstName;
+        existingCustomer.firstName = firstName || existingCustomer.firstName;
         existingCustomer.lastName = lastName;
 
         return existingCustomer;
     };
 }
 
-module.exports = new CustomersService();
+module.exports = new CustomerService();

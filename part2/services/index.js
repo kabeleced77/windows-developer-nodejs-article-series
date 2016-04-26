@@ -1,5 +1,5 @@
 'use strict';
 
 module.exports = {
-    customers: require('./customers')
+    customer: require('./customer')
 };
