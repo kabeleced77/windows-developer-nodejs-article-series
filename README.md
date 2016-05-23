@@ -23,8 +23,26 @@ The code in this repository may be a bit more advanced than shown in the article
 
 ### Part 1
 
-Part 1 implememnts a little calculator which can be accessed via the command line. To use the code from part 1, point a terminal to the `part1` folder. You can use the app via the following command: `node index.js operator operand1 operand2` whereas the command line parameters accept the following values:
+Part 1 implements a little calculator which can be accessed via the command line. To use the code from part 1, point a terminal to the `part1` folder. You can use the app via the following command: `node index.js operator operand1 operand2` whereas the command line parameters accept the following values:
 
 * `operator`: Can be `add`, `subtract`, `multiply` or `divide`. 
 * `operator1`: Can be any floating point number.
-* `operator2`: Same as `operator1`
+* `operator2`: Same as `operator1`.
+
+### Part 2
+
+Part 2 implements a HTTP based Web API to access customer data. To start, point a terminal to the `part2` folder and start the Web API via `node index.js`. The following Web APIs will be available:
+
+* `GET /customers`: A list of all customers.
+* `GET /customer/:id`: Returns a specific customer by id.
+* `DELETE /customer/:id`: Deletes a specific customer by id.
+* `POST /customer`: Creates a new customer.
+    * JSON must be sent in the body:
+
+    ```
+    {
+        "firstName": "Manuel",
+        "lastName": "Rauber"
+    }
+    ```
+* `PUT /customer/:id`: Updates a specific customer by id. The same JSON as in the POST route must be sent.
