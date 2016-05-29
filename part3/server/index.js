@@ -3,13 +3,16 @@
 const restify = require('restify');
 
 const executionTime = require('./executionTime'),
-    controllers = require('../controllers');
+    controllers = require('../controllers'),
+    database = require('../database');
 
 function Server() {
     const that = this;
     let server;
     
     this.start = () => {
+        database.configure('postgres://dev:dev:@localhost:5432/NodeJsWebApi');
+
         server = restify.createServer();
 
         server.pre(executionTime());

@@ -1,9 +1,8 @@
 'use strict';
 
-function CustomerService() {
-    let indexCounter = 1;
-    const inMemoryStorage = {};
+const database = require('../database');
 
+function CustomerService() {
     function parseId(idToParse) {
         const id = parseInt(idToParse);
 
@@ -15,43 +14,73 @@ function CustomerService() {
     }
 
     this.all = () => {
-        return Object
-            .keys(inMemoryStorage)
-            .map(key => inMemoryStorage[key]);
+        return database.get()
+            .then(db => db.models.customer.findAll({
+                include: [
+                    {
+                        model: db.models.bill
+                    }
+                ]
+            }));
     };
 
     this.get = id => {
-        return inMemoryStorage[parseId(id)];
+        return database.get()
+            .then(db => db.models.customer.findById(parseId(id), {
+                include: [
+                    {
+                        model: db.models.bill
+                    }
+                ]
+            }));
     };
 
     this.add = (firstName, lastName) => {
-        if (!firstName) {
-            throw new Error('firstName was not given');
-        }
-
-        inMemoryStorage[indexCounter] = {
-            id: indexCounter,
-            firstName,
-            lastName
-        };
-
-        return inMemoryStorage[indexCounter++];
+        return database.get()
+            .then(db => db.models.customer.create({
+                firstName, lastName
+            }));
     };
 
     this.remove = id => {
-        delete inMemoryStorage[parseId(id)];
+        return this.get(id)
+            .then(model => model.destroy());
     };
 
     this.update = (id, firstName, lastName) => {
-        const existingCustomer = this.get(id);
-        if (!existingCustomer) {
-            throw new Error(`Customer with id ${id} not found.`);
-        }
+        return this.get(id)
+            .then(model => model.update({
+                    firstName, lastName
+                })
+            );
+    };
 
-        existingCustomer.firstName = firstName || existingCustomer.firstName;
-        existingCustomer.lastName = lastName;
+    this.addBill = (customerId, billTitle, billSum) => {
+        return database.get()
+            .then(db => Promise.all([
+                this.get(customerId),
+                db.models.bill.create({
+                    title: billTitle,
+                    sum: billSum
+                })
+            ]))
+            .then(results => {
+                results[0].addBill(results[1]);
+                return results[1];
+            });
+    };
 
-        return existingCustomer;
+    this.removeBill = (customerId, billId) => {
+        return database.get()
+            .then(db =>
+                Promise.all([
+                    this.get(customerId),
+                    db.models.bill.findById(billId)
+                ]))
+            .then(results => {
+                results[0].removeBill(results[1]);
+                results[1].destroy();
+            });
     };
 }
 
