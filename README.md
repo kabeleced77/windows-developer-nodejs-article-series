@@ -46,3 +46,24 @@ Part 2 implements a HTTP based Web API to access customer data. To start, point 
     }
     ```
 * `PUT /customer/:id`: Updates a specific customer by id. The same JSON as in the POST route must be sent.
+
+# Part 3
+
+Part 3 extends the HTTP based Web API to use a database. Before part 3 can be started, you need to install PostgreSQL on your machine and create a login and a database.
+The sample uses username `dev` with password `dev`. The database name is `NodeJsWebApi`. You can customize this by changing the [connection string](part3/server/index.js#L14).
+After that, [Sequelize](http://sequelizejs.com) is used for creating all necessary tables and relationships.
+
+To start, point a terminal to the `part3` folder and start the Web API via `node index.js`. In addition to part 2 the following Web APIs are available:
+
+* `DELETE customer/:id/bill/:billId`: Deletes a bill by the given customer and bill id.
+* `POST customer/:id/bill`: Creates a bill for the given customer by its id.
+    * JSON must be sent in the body:
+
+    ```
+    {
+        "title": "Title of the bill",
+        "sum": 1337
+    }
+    ```
+
+All other endpoints (see part 2) will return the bills of a customer.
