@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "This package contains the code from the Windows Developer Node.js article series.",
   "main": "index.js",
+  "scripts": {
+    "test": "istanbul cover --report html _mocha -- **/*.spec.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/thinktecture/windows-developer-nodejs-article-series.git"
@@ -18,5 +21,13 @@
     "pg": "^4.5.5",
     "restify": "^4.0.4",
     "sequelize": "^3.23.2"
+  },
+  "devDependencies": {
+    "chai": "3.5.0",
+    "chai-http": "3.0.0",
+    "istanbul": "0.4.3",
+    "mocha": "2.5.3",
+    "sinon": "1.17.4",
+    "sinon-chai": "2.8.0"
   }
 }

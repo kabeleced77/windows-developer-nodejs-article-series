@@ -9,14 +9,14 @@ const executionTime = require('./executionTime'),
 function Server() {
     const that = this;
     let server;
-    
+
     this.start = () => {
         database.configure('postgres://dev:dev:@localhost:5432/NodeJsWebApi');
 
         server = restify.createServer();
 
         server.pre(executionTime());
-        
+
         server.use(restify.CORS());
         server.use(restify.queryParser());
         server.use(restify.bodyParser());
@@ -37,7 +37,7 @@ function Server() {
 
         method = method || 'get';
         method = method.toLowerCase();
-        
+
         server[method](route, callback);
 
         console.info(`Route [${method}] ${route} has been added.`);
