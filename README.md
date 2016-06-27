@@ -67,3 +67,8 @@ To start, point a terminal to the `part3` folder and start the Web API via `node
     ```
 
 All other endpoints (see part 2) will return the bills of a customer.
+
+# Part 4
+
+Part 4 extends Part 3 by adding some tests. Execute `npm i` again since some packages were added. After that use `npm test` to let all tests run.
+A folder `coverage` will be created containing the code coverage.
