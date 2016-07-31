@@ -2,6 +2,8 @@
 
 This repositories contains the sample code shown in the Windows Developer Node.js article series which will be published in April. 
 
+If you are interested in working with Node.js and TypeScript, take a look at the [Windows Developer Node.js TypeScript repository](https://github.com/thinktecture/windows-developer-nodejs-typescript).
+
 ## Articles
 
 Take a look at the following list for a mapping of article name to the folder containing the source code.
